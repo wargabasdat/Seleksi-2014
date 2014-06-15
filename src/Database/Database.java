@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+/*KOMEN DARI FELIX GANTENG UNTUK WILLY GANTENG*/
+
 package Database;
 
 import Exception.ConnectionNotStartedException;
@@ -42,6 +44,7 @@ public class Database {
 		if (statement == null) throw new NullSqlStatementException();
 		//else
 		return statement.executeUpdate(query);
+                /*KOMEN DARI FELIX GANTENG UNTUK WILLY GANTENG*/
 	}
 	
 	public void closeConnection() throws ConnectionNotStartedException, NullSqlStatementException, SQLException {
