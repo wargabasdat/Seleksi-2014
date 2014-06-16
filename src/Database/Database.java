@@ -34,9 +34,6 @@ public class Database {
 		connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",USERNAME, PASSWORD);
 		statement = connection.createStatement();
 		return connection;
-//			String sql = "CREATE TABLE IF NOT EXISTS COMPANY " +
-//                      "(ID INT PRIMARY KEY     NOT NULL," +
-//                      " NAME           GEOMETRY    NOT NULL)";
 	}
 	
 	public int executeQuery(String query) throws ConnectionNotStartedException, NullSqlStatementException, SQLException{
@@ -44,7 +41,6 @@ public class Database {
 		if (statement == null) throw new NullSqlStatementException();
 		//else
 		return statement.executeUpdate(query);
-                /*KOMEN DARI FELIX GANTENG UNTUK WILLY GANTENG*/
 	}
 	
 	public void closeConnection() throws ConnectionNotStartedException, NullSqlStatementException, SQLException {
