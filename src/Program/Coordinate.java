@@ -15,11 +15,11 @@ public class Coordinate {
 	public double y;
 	public double xEnd;
 	public double yEnd;
-	public static final int DELTA = 5;
+	public static final int DELTALINE = 8;
 	public Coordinate (double x, double y) {
 		this.x = x;
 		this.y = y;
-		this.xEnd = x + DELTA;
-		this.yEnd = y + DELTA;
+		this.xEnd = x + DELTALINE;
+		this.yEnd = y + DELTALINE;
 	}
 }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-/*KOMEN DARI FELIX GANTENG UNTUK WILLY GANTENG*/
 
 package Database;
 
@@ -12,6 +11,7 @@ import Exception.ConnectionNotStartedException;
 import Exception.NullSqlStatementException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -36,11 +36,16 @@ public class Database {
 		return connection;
 	}
 	
-	public int executeQuery(String query) throws ConnectionNotStartedException, NullSqlStatementException, SQLException{
+	public int executeUpdate(String query) throws ConnectionNotStartedException, NullSqlStatementException, SQLException{
 		if (connection == null) throw new ConnectionNotStartedException();
 		if (statement == null) throw new NullSqlStatementException();
 		//else
+		
 		return statement.executeUpdate(query);
+	}
+	
+	public ResultSet executeQuery(String query) throws SQLException {
+		return statement.executeQuery(query);
 	}
 	
 	public void closeConnection() throws ConnectionNotStartedException, NullSqlStatementException, SQLException {

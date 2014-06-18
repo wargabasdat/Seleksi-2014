@@ -12,11 +12,12 @@ package Program;
  */
 public class Polygon {
 	public Coordinate[] titik;
+	private static int DELTAAREA = 5;
 	public Polygon (Coordinate c) {
 		titik = new Coordinate[4];
-		titik[0] = new Coordinate(c.x,c.y - (double)Coordinate.DELTA/2);
-		titik[1] = new Coordinate(c.x,c.y + (double)Coordinate.DELTA/2);
-		titik[2] = new Coordinate(c.x + Coordinate.DELTA,c.y - (double)Coordinate.DELTA/2);
-		titik[3] = new Coordinate(c.x + Coordinate.DELTA,c.y + (double)Coordinate.DELTA/2);
+		titik[0] = new Coordinate(c.x - DELTAAREA,c.y - DELTAAREA);
+		titik[1] = new Coordinate(c.x - DELTAAREA,c.y + DELTAAREA);
+		titik[2] = new Coordinate(c.x + DELTAAREA,c.y + DELTAAREA);
+		titik[3] = new Coordinate(c.x + DELTAAREA,c.y - DELTAAREA);
 	}
 }
