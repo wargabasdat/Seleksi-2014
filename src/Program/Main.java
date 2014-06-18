@@ -37,7 +37,7 @@ public class Main {
 						+ "VALUES ('POINT("+coordinate.x+" "+coordinate.y+")',"
 						//+ "'LINESTRING(" + coordinate.x + " " + coordinate.y +", " + coordinate.xEnd + " " + coordinate.yEnd + ")')";
 					    + "'LINESTRING(" + coordinate.x + " " + coordinate.y +", " + coordinate.xEnd + " " + coordinate.yEnd + ")',"
-					    + "'POLYGON((" + polygon.titik[0].x + " " + polygon.titik[0].y + ", " + polygon.titik[1].x + " " + polygon.titik[1].y + ", " + polygon.titik[2].x + " " + polygon.titik[2].y + ", " + polygon.titik[3].x + " " + polygon.titik[3].y + ", " + polygon.titik[0].x + " " + polygon.titik[0].y + "))')";
+					    + "'POLYGON((" + polygon.titik[0].x + " " + polygon.titik[0].y /*+ ", " + polygon.titik[1].x + " " + polygon.titik[1].y*/ + ", " + polygon.titik[2].x + " " + polygon.titik[2].y + ", " + polygon.titik[3].x + " " + polygon.titik[3].y + ", " + polygon.titik[0].x + " " + polygon.titik[0].y + "))')";
 			db.executeQuery(sql);
 		} catch (Exception e) {
 		  System.err.println(e.getMessage());
