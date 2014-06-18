@@ -1,3 +1,5 @@
+CREATE EXTENSION postgis;
+
 CREATE TABLE IF NOT EXISTS gedung(
 nama VARCHAR(30),
 geom geometry,
