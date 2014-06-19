@@ -89,7 +89,7 @@ INSERT INTO fasilitas (nama_fasilitas, geom) VALUES
 ('Toilet', 'POINT(365 276)'),
 ('Toilet', 'POINT(516 369)'), 
 ('Toilet', 'POINT(331 152)'),
-('Mushola', 'POINT(225 384)'),
+('Mushola', 'POINT(219 344)'),
 ('Mushola', 'POINT(426 340)'), 
 ('Mushola', 'POINT(522 365)'),
 ('Mushola', 'POINT(369 512)'),
