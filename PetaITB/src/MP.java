@@ -45,12 +45,14 @@ public class MP extends javax.swing.JFrame {
         loc = 0;
         getContentPane().add(Background);
         setSize(820, 636);
+        setVisible(true);
         Back.setVisible(false);
         Jarak_Button.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
                Hasil[0].setText("Silahkan pilih dua buah gedung");
                Hasil[0].setVisible(true);
                loc = 0;
+               Tebak.setVisible(false);
                Jarak_Button.setVisible(false);
                Zona_Button.setVisible(false);
                Fasilitas_Button.setVisible(false);
@@ -61,6 +63,7 @@ public class MP extends javax.swing.JFrame {
         Zona_Button.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
                loc = 0;
+               Tebak.setVisible(false);
                Jarak_Button.setVisible(false);
                Zona_Button.setVisible(false);
                Fasilitas_Button.setVisible(false);
@@ -72,6 +75,7 @@ public class MP extends javax.swing.JFrame {
         Fasilitas_Button.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
                loc = 0;
+               Tebak.setVisible(false);
                Jarak_Button.setVisible(false);
                Zona_Button.setVisible(false);
                Fasilitas_Button.setVisible(false);
@@ -79,9 +83,17 @@ public class MP extends javax.swing.JFrame {
                fasilitas = true;
             }
         });
+        Tebak.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e) {
+               dispose();
+               setVisible(false);
+               new Question();
+            }
+        });
         Back.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
                loc = 0;
+               Tebak.setVisible(true);
                Jarak_Button.setVisible(true);
                Zona_Button.setVisible(true);
                Fasilitas_Button.setVisible(true);
@@ -96,27 +108,27 @@ public class MP extends javax.swing.JFrame {
         
         Labtek_Biru.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
-                ZonaSQL("Labtek Biru");
+                ZonaSQL("Zona Labtek Biru");
             }
         });
         Timur.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
-                ZonaSQL("Timur");
+                ZonaSQL("Zona Timur");
             }
         });
         Timur_Jauh.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
-                ZonaSQL("Timur Jauh");
+                ZonaSQL("Zona Timur Jauh");
             }
         });
         Tengah.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
-                ZonaSQL("Tengah");
+                ZonaSQL("Zona Tengah");
             }
         });
         Barat.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
-                ZonaSQL("Barat");
+                ZonaSQL("Zona Barat");
             }
         });
         
@@ -821,10 +833,15 @@ public class MP extends javax.swing.JFrame {
     public void EnableHasil(boolean B){
         for (int i = 0; i<15; i++){
             Hasil[i].setVisible(B);
+        }
+    }
+    public void ClearHasil(){
+        for (int i = 0; i<15; i++){
             Hasil[i].setText("");
         }
     }
     public void JarakSQL(int titik1, int titik2){
+        ClearHasil();
         java.sql.Connection conn; 
         try { 
             String loc1 = "";
@@ -856,6 +873,8 @@ public class MP extends javax.swing.JFrame {
     }
     
     public void FasilitasSQL (int titik1){
+        ClearHasil();
+        ClearHasil();
         java.sql.Connection conn; 
         try { 
             int i = 1;
@@ -885,20 +904,20 @@ public class MP extends javax.swing.JFrame {
     
     public void ZonaSQL (String Z){
         EnableZona(false);
-                java.sql.Connection conn; 
+        ClearHasil();
+        java.sql.Connection conn; 
         try { 
+            Hasil[0].setText(Z);
             int i = 1;
             Class.forName("org.postgresql.Driver"); 
             String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
             conn = DriverManager.getConnection(url, "postgres", "basdat"); 
             try (Statement s = conn.createStatement()) {
-                ResultSet r = s.executeQuery("SELECT DISTINCT nama, nama_zona " +
-                                            "FROM zona, gedung " +
-                                            "WHERE ST_Within " +
-                                            "(fasilitas.geom, (SELECT DISTINCT geom_zona FROM zona WHERE nama_zona = " + 
-                                            Z +")) AND nama_zona= " + Z);
+                ResultSet r = s.executeQuery("SELECT DISTINCT nama " +
+                                            "FROM gedung, zona " +
+                                            "WHERE ST_Within(geom, (SELECT geom_zona FROM zona WHERE nama_zona = '" +
+                                            Z + "'))");
                 while( r.next() ) {
-                    Hasil[0].setText(r.getString("nama_zona"));
                     Hasil[i].setText(r.getString("nama"));
                     i++;
                 }
@@ -974,6 +993,7 @@ public class MP extends javax.swing.JFrame {
         Tengah = new javax.swing.JButton();
         Labtek_Biru = new javax.swing.JButton();
         Write = new javax.swing.JLabel();
+        Tebak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Peta ITB");
@@ -1114,6 +1134,10 @@ public class MP extends javax.swing.JFrame {
         getContentPane().add(Write);
         Write.setBounds(610, 90, 200, 30);
 
+        Tebak.setText("Tebak-Tebakan!!!");
+        getContentPane().add(Tebak);
+        Tebak.setBounds(630, 300, 150, 40);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1160,6 +1184,7 @@ public class MP extends javax.swing.JFrame {
     private javax.swing.JButton Jarak_Button;
     private javax.swing.JLabel Judul;
     private javax.swing.JButton Labtek_Biru;
+    private javax.swing.JButton Tebak;
     private javax.swing.JButton Tengah;
     private javax.swing.JButton Timur;
     private javax.swing.JButton Timur_Jauh;
