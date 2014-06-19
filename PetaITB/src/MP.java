@@ -33,7 +33,7 @@ public class MP extends javax.swing.JFrame {
             Hasil[i].setVisible(false);
             Hasil[i].setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
             Hasil[i].setText("");
-            Hasil[i].setBounds(610 , 90 + i*25, 200, 30);
+            Hasil[i].setBounds(610 , 90 + i*25, 300, 30);
             getContentPane().add(Hasil[i]);
         }
         Hasil[0].setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
