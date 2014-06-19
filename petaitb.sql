@@ -107,3 +107,21 @@ INSERT INTO fasilitas (nama_fasilitas, geom) VALUES
 ('Kantin CC Timur', 'POINT(358 269)'),
 ('KKP', 'POINT(328 178)');
 
+CREATE TABLE IF NOT EXISTS question(
+id SERIAL references gedung(id),
+no_q SERIAL,
+pertanyaan VARCHAR(140),
+PRIMARY KEY (no_q)
+);
+
+INSERT INTO question (id, pertanyaan) VALUES 
+('4','Ruang 7602 ada di mana?'),
+('15','Gedung rancangan Ir. Soekarno bernama?'),
+('24','Tempat aktivasi AI3 ada di mana?'),
+('6','Apa nama gedung yang ada TOKEMA nya?'),
+('28','Lembaga Kemahasiswaan ada di mana?'),
+('34','Bioskop kampus biasa diselenggarakan di mana?'),
+('30','Sekre KPA ada di mana?'),
+('5','Laboratorium Telematika ada di gedung apa?'),
+('19','Apa bangunan tertinggi di ITB Ganesha?'),
+('42','BNI dalam kampus Ganesha ada di gedung apa?');
