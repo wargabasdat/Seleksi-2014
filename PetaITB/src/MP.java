@@ -20,21 +20,36 @@ import java.sql.Statement;
 public class MP extends javax.swing.JFrame {
     int loc;
     boolean jarak, fasilitas, zona;
+    private javax.swing.JLabel Hasil[];
+    
     /**
      * Creates new form MP
      */
     public MP() {
         initComponents();
+        Hasil = new javax.swing.JLabel[15];
+        for (int i = 0; i<15; i++){
+            Hasil[i] = new javax.swing.JLabel();
+            Hasil[i].setVisible(false);
+            Hasil[i].setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            Hasil[i].setText("");
+            Hasil[i].setBounds(610 , 90 + i*25, 200, 30);
+            getContentPane().add(Hasil[i]);
+        }
+        Hasil[0].setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         EnableZona(false);
         jarak = false;
         fasilitas = false;
         zona = false;
+        Write.setEnabled(false);
         loc = 0;
         getContentPane().add(Background);
         setSize(820, 636);
         Back.setVisible(false);
         Jarak_Button.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e) {
+               Hasil[0].setText("Silahkan pilih dua buah gedung");
+               Hasil[0].setVisible(true);
                loc = 0;
                Jarak_Button.setVisible(false);
                Zona_Button.setVisible(false);
@@ -75,6 +90,7 @@ public class MP extends javax.swing.JFrame {
                fasilitas = false;
                zona = false;
                EnableZona(false);
+               EnableHasil(false);
             }
         });
         
@@ -801,28 +817,99 @@ public class MP extends javax.swing.JFrame {
         Tengah.setVisible(B);
         Labtek_Biru.setVisible(B);
     }
-    public void ExecuteQuery(String Query) throws IOException {        
+
+    public void EnableHasil(boolean B){
+        for (int i = 0; i<15; i++){
+            Hasil[i].setVisible(B);
+            Hasil[i].setText("");
+        }
+    }
+    public void JarakSQL(int titik1, int titik2){
         java.sql.Connection conn; 
         try { 
-          Class.forName("org.postgresql.Driver"); 
-          String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
-          conn = DriverManager.getConnection(url, "postgres", "basdat"); 
+            String loc1 = "";
+            String loc2 = "";
+            Class.forName("org.postgresql.Driver"); 
+            String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
+            conn = DriverManager.getConnection(url, "postgres", "basdat"); 
             try (Statement s = conn.createStatement()) {
-                ResultSet r = s.executeQuery(Query);
+                ResultSet r = s.executeQuery("SELECT nama, ST_AsText(geom) FROM gedung WHERE id = " + titik1);
                 while( r.next() ) {
-
+                    Hasil[1].setText(r.getString("nama") + " - ");
+                    loc1 = r.getString("st_astext");
                 }
-                
-            } 
-          conn.close(); 
+                r = s.executeQuery("SELECT nama, ST_AsText(geom) FROM gedung WHERE id = " + titik2);
+                while( r.next() ) {
+                    Hasil[2].setText(r.getString("nama"));
+                    loc2 = r.getString("st_astext");
+                }
+                r = s.executeQuery( "SELECT ST_Distance(ST_GeometryFromText('" + loc1 + "'),ST_GeometryFromText('" + loc2 + "'))");
+                while( r.next() ) {
+                     Hasil[3].setText("Jarak = " + r.getString("st_distance"));
+                 }
+            }
+            EnableHasil(true);
+            conn.close(); 
         } 
-      catch( ClassNotFoundException | SQLException e ) { 
-      }
+        catch( ClassNotFoundException | SQLException e ) { 
+        }
     }
     
-    public void JarakSQL(int titik1, int titik2){}
-    public void FasilitasSQL (int titik1){}
-    public void ZonaSQL (String Z){}
+    public void FasilitasSQL (int titik1){
+        java.sql.Connection conn; 
+        try { 
+            int i = 1;
+            Class.forName("org.postgresql.Driver"); 
+            String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
+            conn = DriverManager.getConnection(url, "postgres", "basdat"); 
+            try (Statement s = conn.createStatement()) {
+                ResultSet r = s.executeQuery("SELECT DISTINCT nama, nama_fasilitas " +
+                                            "FROM fasilitas, gedung " +
+                                            "WHERE ST_Within " +
+                                            "(fasilitas.geom, (SELECT DISTINCT gedung.geom FROM gedung WHERE id = " + 
+                                            titik1 +")) AND gedung.id = " + titik1);
+                while( r.next() ) {
+                    Hasil[0].setText(r.getString("nama"));
+                    Hasil[i].setText(r.getString("nama_fasilitas"));
+                    i++;
+                }
+                
+            }
+            EnableHasil(true);
+            conn.close(); 
+        } 
+        catch( ClassNotFoundException | SQLException e ) { 
+        }
+    }
+       
+    
+    public void ZonaSQL (String Z){
+        EnableZona(false);
+                java.sql.Connection conn; 
+        try { 
+            int i = 1;
+            Class.forName("org.postgresql.Driver"); 
+            String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
+            conn = DriverManager.getConnection(url, "postgres", "basdat"); 
+            try (Statement s = conn.createStatement()) {
+                ResultSet r = s.executeQuery("SELECT DISTINCT nama, nama_zona " +
+                                            "FROM zona, gedung " +
+                                            "WHERE ST_Within " +
+                                            "(fasilitas.geom, (SELECT DISTINCT geom_zona FROM zona WHERE nama_zona = " + 
+                                            Z +")) AND nama_zona= " + Z);
+                while( r.next() ) {
+                    Hasil[0].setText(r.getString("nama_zona"));
+                    Hasil[i].setText(r.getString("nama"));
+                    i++;
+                }
+                
+            }
+            EnableHasil(true);
+            conn.close(); 
+        } 
+        catch( ClassNotFoundException | SQLException e ) { 
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -886,6 +973,7 @@ public class MP extends javax.swing.JFrame {
         Timur = new javax.swing.JButton();
         Tengah = new javax.swing.JButton();
         Labtek_Biru = new javax.swing.JButton();
+        Write = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Peta ITB");
@@ -1022,6 +1110,10 @@ public class MP extends javax.swing.JFrame {
         getContentPane().add(Labtek_Biru);
         Labtek_Biru.setBounds(630, 130, 150, 40);
 
+        Write.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(Write);
+        Write.setBounds(610, 90, 200, 30);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1051,7 +1143,7 @@ public class MP extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1071,6 +1163,7 @@ public class MP extends javax.swing.JFrame {
     private javax.swing.JButton Tengah;
     private javax.swing.JButton Timur;
     private javax.swing.JButton Timur_Jauh;
+    private javax.swing.JLabel Write;
     private javax.swing.JButton Zona_Button;
     private javax.swing.JButton b1;
     private javax.swing.JButton b10;

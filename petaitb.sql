@@ -89,13 +89,14 @@ INSERT INTO fasilitas (nama_fasilitas, geom) VALUES
 ('Toilet', 'POINT(365 276)'),
 ('Toilet', 'POINT(516 369)'), 
 ('Toilet', 'POINT(331 152)'),
-('Mushola', 'POINT(225 384)'),
+('Mushola', 'POINT(219 344)'),
 ('Mushola', 'POINT(426 340)'), 
 ('Mushola', 'POINT(522 365)'),
 ('Mushola', 'POINT(369 512)'),
 ('Mushola', 'POINT(122 368)'),
 ('Mushola', 'POINT(168 598)'), 
 ('Mushola', 'POINT(240 267)'),
+('Mushola', 'POINT(84 417)'),
 ('Kantin Borju', 'POINT(195 323)'),
 ('Kantin GKU Barat', 'POINT(149 367)'), 
 ('Coffee Toffee', 'POINT(212 460)'),
@@ -105,3 +106,25 @@ INSERT INTO fasilitas (nama_fasilitas, geom) VALUES
 ('Kantin CC Barat', 'POINT(267 279)'),
 ('Kantin CC Timur', 'POINT(358 269)'),
 ('KKP', 'POINT(328 178)');
+<<<<<<< HEAD
+=======
+
+CREATE TABLE IF NOT EXISTS question(
+id SERIAL references gedung(id),
+no_q SERIAL,
+pertanyaan VARCHAR(140),
+PRIMARY KEY (no_q)
+);
+
+INSERT INTO question (id, pertanyaan) VALUES 
+('4','Ruang 7602 ada di mana?'),
+('15','Gedung rancangan Ir. Soekarno bernama?'),
+('24','Tempat aktivasi AI3 ada di mana?'),
+('6','Apa nama gedung yang ada TOKEMA nya?'),
+('28','Lembaga Kemahasiswaan ada di mana?'),
+('34','Bioskop kampus biasa diselenggarakan di mana?'),
+('30','Sekre KPA ada di mana?'),
+('5','Laboratorium Telematika ada di gedung apa?'),
+('19','Apa bangunan tertinggi di ITB Ganesha?'),
+('42','BNI dalam kampus Ganesha ada di gedung apa?');
+>>>>>>> 2fa1fc1bac3008d986f4937900206e9a3792fbad
