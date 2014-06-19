@@ -14,7 +14,7 @@ INSERT INTO wilayah (nama_wilayah, geom_wilayah) VALUES
 ('Ujung Berung', 'POLYGON((1784 732, 2390 542, 2294 702, 2352 830, 2454 826, 2474 508, 2582 476, 2749 830, 2764 972, 2894 1145, 2697 1224, 2564 1106, 2552 1291, 2421 1239, 2403 1048, 2264 1066, 2288 1094, 2085 1282, 2003 1230, 1912 1254, 1945 1360, 1760 1112, 1806 1100, 1791 1051, 1673 1048, 1703 875, 1784 732))');
 
 CREATE TABLE IF NOT EXISTS wisata(
-id SERIAL,
+id INT,
 nama_wisata VARCHAR(30),
 geom_wisata geometry,
 kategori VARCHAR(20),
@@ -22,14 +22,14 @@ alamat VARCHAR(50),
 PRIMARY KEY (id)
 );
 
-INSERT INTO wisata (nama_wisata, geom_wisata, kategori, alamat) VALUES 
-('Kebun Binatang Bandung', 'POINT(229 334)', 'FloraFauna', 'Jl. Taman Sari'),
-('Tahura', 'POINT(225 376)', 'FloraFauna', 'Dago Pakar'),
-('Wahana Wisata Gunung Puntang', 'POINT(225 376)', 'FloraFauna', 'Desa Puntang, Kec. Cimaung Kabupaten Bandung'),
-('Taman Kupu-kupu', 'POINT(229 334)', 'FloraFauna', 'Jl. Cihanjuang Cibaligo Km 3 No 58'),
-('Wisata Bunga Cihideung', 'POINT(225 376)', 'FloraFauna', 'Desa Cihideung, Kec. Parompong'),
-('Curug Dago', 'POINT(225 376)', 'Air Terjun', 'Kampung Curug Dago, Kec. Cidadap Bandung'),
-('Gedung Merdeka dan Museum KAA', 'POINT(225 376)', 'GedungTua', 'Jl. Asia Afrika'),
-('AACC (Majestic)', 'POINT(225 376)', 'GedungTua', 'Braga'),
-('Saung Angklung Udjo', 'POINT(225 376)', 'Budaya', 'Jln. Padasuka 118 Kota Bandung'),
-('Taman Budaya Dago', 'POINT(225 376)', 'Budaya', 'Jl. Bukit Dago Selatan Kota Bandung');
+INSERT INTO wisata (id, nama_wisata, geom_wisata, kategori, alamat) VALUES 
+(1, 'Kebun Binatang Bandung', 'POINT(229 334)', 'FloraFauna', 'Jln. Taman Sari'),
+(2, 'Tahura', 'POINT(225 376)', 'FloraFauna', 'Dago Pakar'),
+(3, 'Wahana Wisata Gunung Puntang', 'POINT(225 376)', 'FloraFauna', 'Desa Puntang, Kec. Cimaung Kabupaten Bandung'),
+(4, 'Taman Kupu-kupu', 'POINT(229 334)', 'FloraFauna', 'Jln. Cihanjuang Cibaligo Km 3 No 58'),
+(5, 'Wisata Bunga Cihideung', 'POINT(225 376)', 'FloraFauna', 'Desa Cihideung, Kec. Parompong'),
+(6, 'Curug Dago', 'POINT(225 376)', 'Air Terjun', 'Kampung Curug Dago, Kec. Cidadap Bandung'),
+(7, 'Gedung Merdeka dan Museum KAA', 'POINT(225 376)', 'GedungTua', 'Jln. Asia Afrika'),
+(8, 'AACC (Majestic)', 'POINT(225 376)', 'GedungTua', 'Braga'),
+(9, 'Saung Angklung Udjo', 'POINT(225 376)', 'Budaya', 'Jln. Padasuka 118 Kota Bandung'),
+(10, 'Taman Budaya Dago', 'POINT(225 376)', 'Budaya', 'Jln. Bukit Dago Selatan Kota Bandung');
