@@ -50,4 +50,62 @@ INSERT INTO gedung (nama, geom) VALUES
 ('Mushola Bundar','POLYGON((455 215, 460 215, 464 219, 464 224, 460 227, 455 227, 451 224, 451 219, 455 215))'),
 ('Teknik Lingkungan', 'POLYGON((400 263, 469 263, 469 261, 477 261, 477 265, 504 265, 504 284, 413 284, 413 289, 400 289, 400 263))'),
 ('GKU Timur','POLYGON((477 351, 497 351, 497 355, 533 355, 533 374, 477 374, 477 351))'),
+<<<<<<< HEAD
 ('Lab Doping','POLYGON((449 300, 497 300, 497 345, 449 345, 449 300))');
+=======
+('Lab Doping','POLYGON((449 300, 497 300, 497 345, 449 345, 449 300))');
+
+CREATE TABLE IF NOT EXISTS zona
+(nama_zona varchar(20),
+ geom_zona geometry,
+ PRIMARY KEY (nama_zona));
+
+INSERT INTO zona (nama_zona, geom_zona) VALUES 
+('Zona Tengah', 'POLYGON((191 315, 189.5 354.5, 182.5 362.5, 183.5 399, 252 399, 252 527, 382 527, 382 394.5, 438 396.5, 438 315, 191 315))'),
+('Zona Barat', 'POLYGON((227 172, 227 297.5, 190.5 301.5, 189 314, 187.5 384.5, 156.5 389.5, 157.5 542.5, 192.5 562.5, 197 629.5, 134.5 628.5, 79 604, 60 174.5, 227 172))'),
+('Zona Timur', 'POLYGON((446 131.5, 446 150.5, 425.5 150.5, 424.5 169, 401 169, 400.5 207, 393.5 209, 393 292.5, 501.5 293.5, 504.5 354.33, 542 352, 531 250, 512 192.5, 485.5 176.5, 482 134.5, 446 131.5))'),
+('Zona Timur Jauh', 'POLYGON((452.5 374, 466.5 374, 466.5 379.5, 476.5 380.5, 476.5 376.5, 539 377, 574 573, 451 579.5, 447 404, 447 374, 452.5 374))'),
+('Zona Labtek Biru', 'POLYGON((162 420.5, 162 527, 246 527, 246 420.5, 162 420.5))');
+
+CREATE TABLE IF NOT EXISTS fasilitas(
+id SERIAL,
+nama_fasilitas VARCHAR(30),
+geom geometry,
+PRIMARY KEY (id)
+);
+
+INSERT INTO fasilitas (nama_fasilitas, geom) VALUES 
+('Toilet', 'POINT(229 334)'),
+('Toilet', 'POINT(225 376)'),
+('Toilet', 'POINT(373 365)'),
+('Toilet', 'POINT(414 342)'), 
+('Toilet', 'POINT(347 491)'),
+('Toilet', 'POINT(262 511)'),
+('Toilet', 'POINT(265 457)'),
+('Toilet', 'POINT(350 600)'), 
+('Toilet', 'POINT(276 579)'),
+('Toilet', 'POINT(155 596)'),
+('Toilet', 'POINT(213 501)'),
+('Toilet', 'POINT(205 453)'), 
+('Toilet', 'POINT(151 354)'),
+('Toilet', 'POINT(243 275)'),
+('Toilet', 'POINT(365 276)'),
+('Toilet', 'POINT(516 369)'), 
+('Toilet', 'POINT(331 152)'),
+('Mushola', 'POINT(225 384)'),
+('Mushola', 'POINT(426 340)'), 
+('Mushola', 'POINT(522 365)'),
+('Mushola', 'POINT(369 512)'),
+('Mushola', 'POINT(122 368)'),
+('Mushola', 'POINT(168 598)'), 
+('Mushola', 'POINT(240 267)'),
+('Kantin Borju', 'POINT(195 323)'),
+('Kantin GKU Barat', 'POINT(149 367)'), 
+('Coffee Toffee', 'POINT(212 460)'),
+('Kantin Kebab', 'POINT(182 462)'),
+('Kantin Oktagon', 'POINT(291 498)'),
+('Kantin GKU Timur', 'POINT(481 355)'), 
+('Kantin CC Barat', 'POINT(267 279)'),
+('Kantin CC Timur', 'POINT(358 269)'),
+('KKP', 'POINT(328 178)');
+>>>>>>> 9addd56fda6389326f304c03add8c38d1c54cb40

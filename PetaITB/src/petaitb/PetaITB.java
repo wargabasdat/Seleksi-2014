@@ -29,25 +29,9 @@ public class PetaITB {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
-        Map params = new HashMap();
-        params.put("dbtype", "postgis");        //must be postgis
-        params.put("host", "localhost");        //the name or ip address of the machine running PostGIS
-        params.put("port", new Integer(5432));  //the port that PostGIS is running on (generally 5432)
-        params.put("database", "Peta_ITB");      //the name of the database to connect to.
-        params.put("user", "postgres");         //the user to connect with
-        params.put("passwd", "basdat");               //the password of the user.
-
-        DataStore pgDatastore = DataStoreFinder.getDataStore(params);
-        FeatureSource fsBC = pgDatastore.getFeatureSource("geom");
-
-        System.out.println("bc count: " + fsBC.getCount(Query.ALL));
-        
+    public static void main(String[] args) throws IOException {        
         java.sql.Connection conn; 
         try { 
-          /* 
-          * Load the JDBC driver and establish a connection. 
-          */
           Class.forName("org.postgresql.Driver"); 
           String url = "jdbc:postgresql://localhost:5432/Peta_ITB"; 
           conn = DriverManager.getConnection(url, "postgres", "basdat"); 
@@ -70,11 +54,7 @@ public class PetaITB {
                     System.out.println(r.getString("st_distance"));
                 }
             } 
-            
-            
-            
           conn.close(); 
-          
         } 
       catch( ClassNotFoundException | SQLException e ) { 
       }
