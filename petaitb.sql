@@ -50,9 +50,6 @@ INSERT INTO gedung (nama, geom) VALUES
 ('Mushola Bundar','POLYGON((455 215, 460 215, 464 219, 464 224, 460 227, 455 227, 451 224, 451 219, 455 215))'),
 ('Teknik Lingkungan', 'POLYGON((400 263, 469 263, 469 261, 477 261, 477 265, 504 265, 504 284, 413 284, 413 289, 400 289, 400 263))'),
 ('GKU Timur','POLYGON((477 351, 497 351, 497 355, 533 355, 533 374, 477 374, 477 351))'),
-<<<<<<< HEAD
-('Lab Doping','POLYGON((449 300, 497 300, 497 345, 449 345, 449 300))');
-=======
 ('Lab Doping','POLYGON((449 300, 497 300, 497 345, 449 345, 449 300))');
 
 CREATE TABLE IF NOT EXISTS zona
@@ -108,4 +105,3 @@ INSERT INTO fasilitas (nama_fasilitas, geom) VALUES
 ('Kantin CC Barat', 'POINT(267 279)'),
 ('Kantin CC Timur', 'POINT(358 269)'),
 ('KKP', 'POINT(328 178)');
->>>>>>> 9addd56fda6389326f304c03add8c38d1c54cb40
