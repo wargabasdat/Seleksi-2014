@@ -6,9 +6,14 @@
 
 package buntelan;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*; 
 import java.util.*; 
 import java.lang.*; 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import org.postgis.*; 
 
 /**
@@ -23,8 +28,9 @@ public class coba extends javax.swing.JFrame {
     public coba() {
         
         initComponents();
-        setSize(1027, 555);
+        setSize(1150, 555);
         getContentPane().add(peta);
+        DeskripsiTempatTextArea.setVisible(false);
     }
 
     /**
@@ -47,6 +53,15 @@ public class coba extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         wilayah = new javax.swing.JComboBox();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        wisata_lain = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DeskripsiTempatTextArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -64,11 +79,11 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(250, 210, 20, 20);
+        jButton2.setBounds(220, 210, 20, 20);
 
         alamat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(alamat);
-        alamat.setBounds(770, 80, 250, 50);
+        alamat.setBounds(760, 80, 370, 50);
 
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,11 +96,11 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(760, 170, 20, 20);
+        jButton1.setBounds(240, 210, 20, 20);
 
         nama.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(nama);
-        nama.setBounds(770, 20, 250, 30);
+        nama.setBounds(760, 20, 370, 50);
 
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,7 +113,7 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(760, 140, 20, 20);
+        jButton3.setBounds(190, 220, 20, 20);
 
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,7 +126,7 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(760, 200, 20, 20);
+        jButton4.setBounds(300, 240, 20, 20);
 
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,7 +139,7 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(760, 230, 20, 20);
+        jButton5.setBounds(240, 390, 20, 20);
 
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,7 +152,7 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(760, 260, 20, 20);
+        jButton6.setBounds(290, 280, 20, 20);
 
         wilayah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ujung Berung", "Gede Bage", "Bojonagara", "Tegallega", "Cibeunying", "Karees" }));
         wilayah.addActionListener(new java.awt.event.ActionListener() {
@@ -146,14 +161,81 @@ public class coba extends javax.swing.JFrame {
             }
         });
         getContentPane().add(wilayah);
-        wilayah.setBounds(800, 430, 200, 30);
+        wilayah.setBounds(1020, 300, 130, 30);
+
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(270, 310, 20, 20);
+
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(220, 280, 20, 20);
+
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton9);
+        jButton9.setBounds(400, 250, 20, 20);
+
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton10);
+        jButton10.setBounds(310, 160, 20, 20);
+
+        wisata_lain.setText("Cari Tempat Wisata di Wilayah Tertentu");
+        getContentPane().add(wisata_lain);
+        wisata_lain.setBounds(770, 290, 230, 40);
+
+        DeskripsiTempatTextArea.setColumns(20);
+        DeskripsiTempatTextArea.setRows(5);
+        jScrollPane1.setViewportView(DeskripsiTempatTextArea);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(760, 150, 400, 130);
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(760, 300, 250, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        SQL_alamat(1);
+        SQL_alamat(2);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -161,8 +243,7 @@ public class coba extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        SQL_alamat(2);
+        SQL_alamat(1);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -174,7 +255,7 @@ public class coba extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
+        SQL_alamat(4);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -182,7 +263,7 @@ public class coba extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
+        SQL_alamat(5);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -190,7 +271,7 @@ public class coba extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
+        SQL_alamat(6);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -201,6 +282,38 @@ public class coba extends javax.swing.JFrame {
         int i = wilayah.getSelectedIndex();
         SQL_wisata(i);
     }//GEN-LAST:event_wilayahActionPerformed
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        SQL_alamat(7);
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        SQL_alamat(8);
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        SQL_alamat(9);
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        SQL_alamat(10);
+    }//GEN-LAST:event_jButton10MouseClicked
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +353,8 @@ public class coba extends javax.swing.JFrame {
 
 public void SQL_alamat(int i) { 
 
+  DeskripsiTempatTextArea.setVisible(true);
+  nama.setVisible(true);
   java.sql.Connection conn; 
 
   try { 
@@ -260,6 +375,7 @@ public void SQL_alamat(int i) {
     */ 
     String hasil1="";
     String hasil2="";
+    String hasil3=" ";
     try (Statement s = conn.createStatement()) {
         ResultSet r = s.executeQuery("SELECT nama_wisata, alamat FROM wisata WHERE id = " +i); 
         while( r.next() ) { 
@@ -270,6 +386,107 @@ public void SQL_alamat(int i) {
           hasil1 = r.getString("nama_wisata"); 
           hasil2 = "Alamat: " + r.getString("alamat");
           
+          switch (i){
+            case 1 : 
+              DeskripsiTempatTextArea.setText("Kebun Binatang Bandung ini pada awalnya dikenal\n");
+              DeskripsiTempatTextArea.append("dengan nama Derenten (dalam bahasa sunda, dierentuin)\n");
+              DeskripsiTempatTextArea.append("yang artinya kebun binatang. Wisata yang ditawarkan\n");
+              DeskripsiTempatTextArea.append("disini selain kebun binatang itu sendiri antara lain\n");
+              DeskripsiTempatTextArea.append("flying fox, taman bermain, dan kolam untuk perahu\n");
+              DeskripsiTempatTextArea.append("dan perahu bebek.\n");
+              //GAMBAR
+              
+//              try {
+//    img = ImageIO.read(new File("images/KebunBinatang.jpg"));
+//} catch (IOException e) {
+//    e.printStackTrace();
+//}
+//
+//              dimg = img.getScaledInstance(GambarTempat.getWidth() , GambarTempat.getHeight(),
+//                 Image.SCALE_SMOOTH);
+//             imageIcon = new ImageIcon(dimg);
+//             GambarTempat.setIcon(imageIcon);
+//             break;
+            case 2 :
+              DeskripsiTempatTextArea.setText("Cihampelas Walk (Ciwalk) adalah salah satu pusat \n");
+              DeskripsiTempatTextArea.append("perbelanjaan mewah di Kota Bandung yang bersih dan nyaman.\n");
+              DeskripsiTempatTextArea.append("Lampu dari tiap gerai dan bangunan utama pada malam hari \n");
+              DeskripsiTempatTextArea.append("akan memberikan atmosfer yang berbeda, belum lagi juntaian\n");
+              DeskripsiTempatTextArea.append("dan lilitan lampu hias yang digantungkan di pohon-pohon \n");
+              DeskripsiTempatTextArea.append("sekitar outdoor Ciwalk.\n");
+              //GAMBAR
+//                  try {
+//    img = ImageIO.read(new File("images/CihampelasWalk.jpg"));
+//} catch (IOException e) {
+//    e.printStackTrace();
+//}
+//
+//              dimg = img.getScaledInstance(GambarTempat.getWidth() , GambarTempat.getHeight(),
+//                 Image.SCALE_SMOOTH);
+//             imageIcon = new ImageIcon(dimg);
+//             GambarTempat.setIcon(imageIcon);
+              break;
+            case 3 :
+              DeskripsiTempatTextArea.setText("Paris Van Java Resort Lifestyle Place adalah sebuah ");
+              DeskripsiTempatTextArea.append("pusat perbelanjaan yang terletak di Bandung, Jawa Barat.\n");
+              DeskripsiTempatTextArea.append("Mal yang diresmikan pada bulan Juli 2006 ini, dirancang \n");
+              DeskripsiTempatTextArea.append("dengan nuansa open air yang alami serta pemandangan \n");
+              DeskripsiTempatTextArea.append("burung-burung merpati hias yang berterbangan bebas. \n");
+              DeskripsiTempatTextArea.append("Faktor lain yang menjadi daya tarik adalah konsep \n");
+              DeskripsiTempatTextArea.append("bangunan yang kental dengan desain Eropa.\n");
+              break;
+            case 4 :
+              DeskripsiTempatTextArea.setText("Museum Geologi didirikan pada tanggal 16 Mei 1928 dan \n");
+              DeskripsiTempatTextArea.append("dijadikan sebagai salah satu monumen bersejarah. Museum ini \n");
+              DeskripsiTempatTextArea.append("berada di bawah perlindungan pemerintah dan merupakan \n");
+              DeskripsiTempatTextArea.append("peninggalan nasional. Dalam Museum ini, tersimpan dan \n");
+              DeskripsiTempatTextArea.append("dikelola materi-materi geologi yang berlimpah, seperti fosil,\n");
+              DeskripsiTempatTextArea.append(" batuan, mineral.\n");
+              break;
+            case 5 : 
+              DeskripsiTempatTextArea.setText("Museum Sri Baduga adalah salah satu museum pendidikan yang \n");
+              DeskripsiTempatTextArea.append("terletak di Kota Bandung. Bangunan museum memiliki konsep \n");
+              DeskripsiTempatTextArea.append("bangunan tradisional Jawa Barat. Bangunannya terdiri dari \n");
+              DeskripsiTempatTextArea.append("tiga lantai di mana terdapat tema tersendiri untuk \n");
+              DeskripsiTempatTextArea.append("koleksi-koleksi yang dipamerkan pada setiap lantainya.\n");
+              break;
+            case 6 : 
+              DeskripsiTempatTextArea.setText("Stadion Siliwangi merupakan stadion milik \n");
+              DeskripsiTempatTextArea.append("Kodam III/Siliwangi. Stadion ini awalnya diperuntuhkan \n");
+              DeskripsiTempatTextArea.append("untuk pembinaan jasmani anggota Kodam III. Saat ini stadion\n");
+              DeskripsiTempatTextArea.append("bisa digunakan untuk pertandingan umum dengan kapasitas \n");
+              DeskripsiTempatTextArea.append("sekitar 25.000.\n");
+              break;
+            case 7 :
+              DeskripsiTempatTextArea.setText("Gedung Merdeka di jalan Asia-Afrika, Bandung, Indonesia \n");
+              DeskripsiTempatTextArea.append("adalah gedung bersejarah yang pernah digunakan sebagai tempat \n");
+              DeskripsiTempatTextArea.append("Konferensi Tingkat Tinggi Asia-Afrika tahun 1955. Kini gedung\n");
+              DeskripsiTempatTextArea.append("ini digunakan sebagai museum yang memamerkan berbagai benda\n");
+              DeskripsiTempatTextArea.append("koleksi dan foto Konferensi Asia-Afrika yang merupakan \n");
+              DeskripsiTempatTextArea.append("cikal bakal Gerakan Non-Blok.\n");
+              break;
+            case 8 :
+              DeskripsiTempatTextArea.setText("Gelanggang Olahraga Padjadjaran adalah sebuah gelanggang \n");
+              DeskripsiTempatTextArea.append("olahraga serbaguna di Kota Bandung, Jawa Barat, Indonesia. \n");
+              DeskripsiTempatTextArea.append("Gelanggang olahraga ini umumnya digunakan untuk olahraga \n");
+              DeskripsiTempatTextArea.append("basket dan bulu tangkis.\n");
+              break;
+            case 9 :
+              DeskripsiTempatTextArea.setText("Saung Angklung Udjo (SAU) adalah suatu tempat yang merupakan \n");
+              DeskripsiTempatTextArea.append("tempat pertunjukan, pusat kerajinan tangan dari bambu,\n");
+              DeskripsiTempatTextArea.append("dan workshop instrumen musik dari bambu. Selain itu, \n");
+              DeskripsiTempatTextArea.append("SAU mempunyai tujuan sebagai laboratorium kependidikan dan \n");
+              DeskripsiTempatTextArea.append("pusat belajar untuk memelihara kebudayaan Sunda \n");
+              DeskripsiTempatTextArea.append("khususnya angklung.\n");
+              break;
+            case 10 :
+              DeskripsiTempatTextArea.setText("Dago Golf Course adalah salah satu lapangan golf tertua\n");
+              DeskripsiTempatTextArea.append("di Indonesia. Tempat dibangun pada tahun 1917 dengan \n");
+              DeskripsiTempatTextArea.append("menawarkan 18 hole golf publik dalam lanscape yang unik dari \n");
+              DeskripsiTempatTextArea.append("lokasi lembah di Bandung utara.\n");
+              break;
+            
+        }
         } 
         nama.setText(hasil1);
         alamat.setText(hasil2);
@@ -283,7 +500,8 @@ public void SQL_alamat(int i) {
 } 
 
 public void SQL_wisata(int i) { 
-
+  DeskripsiTempatTextArea.setVisible(true);
+  nama.setVisible(false);
   java.sql.Connection conn; 
 
   try { 
@@ -303,31 +521,35 @@ public void SQL_wisata(int i) {
     * Create a statement and execute a select query. 
     */ 
     String hasil="";
+    String hasil2 = "";
     String wil = "";
-    if (i == 1){
-        wil = "Ujung Berung";
+    DeskripsiTempatTextArea.setText("");
+    if (i == 0){
+        wil = wil.replaceAll(wil, "Ujung Berung");
+    } else if (i == 1){
+        wil = wil.replaceAll(wil, "Gede Bage");
     } else if (i == 2){
-        wil = "Gede Bage";
+        wil = wil.replaceAll(wil,"Bojonagara");
     } else if (i == 3){
-        wil = "Bojonagara";
+        wil = wil.replaceAll(wil, "Tegallega");
     } else if (i == 4){
-        wil = "Tegallega";
+        wil = wil.replaceAll(wil, "Cibeunying");
     } else if (i == 5){
-        wil = "Cibeunying";
-    } else if (i == 6){
-        wil = "Karees";
+        wil = wil.replaceAll(wil, "Karees");
     } 
     try (Statement s = conn.createStatement()) {
-        ResultSet r = s.executeQuery("SELECT DISTINCT nama_wisata FROM wisata WHERE ST_Within(geom_wisata, (SELECT geom_wilayah FROM wilayah WHERE nama_wilayah = '" +wil +"'))"); 
+        ResultSet r = s.executeQuery("SELECT DISTINCT nama_wisata FROM wisata, wilayah WHERE ST_Within(geom_wisata, (SELECT geom_wilayah FROM wilayah WHERE nama_wilayah = '" +wil +"'))"); 
         while( r.next() ) { 
           /* 
           * Retrieve the geometry as an object then cast it to the geometry type. 
           * Print things out. 
           */ 
           hasil = r.getString("nama_wisata");
-          
+          DeskripsiTempatTextArea.append(hasil + "\n");
         } 
-        nama.setText(hasil);
+        alamat.setText(wil);
+        hasil2 = hasil2.replaceAll(hasil2, "");
+        
     //    s.close(); 
     }
         conn.close(); 
@@ -338,16 +560,25 @@ public void SQL_wisata(int i) {
 } 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea DeskripsiTempatTextArea;
     private javax.swing.JLabel alamat;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel nama;
     private javax.swing.JLabel peta;
     private javax.swing.JComboBox wilayah;
+    private javax.swing.JLabel wisata_lain;
     // End of variables declaration//GEN-END:variables
 }
